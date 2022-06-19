@@ -1,2 +1,2 @@
 # DeconzMqttBridge
-Bridge between Deconz websocket/REST API to MQTT
+Bridge between Deconz websocket/REST API and MQTT
