@@ -1,0 +1,10 @@
+FROM localhost/cross-base-arm64:latest
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN dpkg --add-architecture arm64 && \
+    apt-get update && \
+    apt-get install --assume-yes pkg-config:arm64 libssl-dev:arm64
+
+ENV AARCH64_UNKNOWN_LINUX_GNU_OPENSSL_LIB_DIR=/usr/lib/aarch64-linux-gnu \
+    AARCH64_UNKNOWN_LINUX_GNU_OPENSSL_INCLUDE_DIR=/usr/include/aarch64-linux-gnu/openssl

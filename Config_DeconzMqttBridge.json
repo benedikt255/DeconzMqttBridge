@@ -1,0 +1,67 @@
+{
+    "broker_url": "tcp://192.168.1.183:1883",
+    "broker_conn_timeout": 600,
+    "ws_event": 
+    {
+        "added": [],
+        "changed": {
+            "lights": [],
+            "sensors": [
+                {                
+                    "id": "2",
+                    "config_items": [],
+                    "state_items": [
+                        {
+                            "field": "buttonevent",
+                            "conversation_factor": 1,
+                            "mqtt_topic": "home/mobileswitch/huetap",
+                            "retain": false
+                        }
+                    ],
+                    "name": "HueTap"
+                },
+                {                
+                    "id": "3",
+                    "config_items": [],
+                    "state_items": [
+                        {
+                            "field": "humidity",
+                            "conversation_factor": 0.01,
+                            "mqtt_topic": "home/balcony/humidity",
+                            "retain": true
+                        }
+                    ],
+                    "name": "Weather"
+                },
+                {
+                    "id": "4",
+                    "config_items": [],
+                    "state_items": [
+                        {
+                            "field": "temperature",
+                            "conversation_factor": 0.01,
+                            "mqtt_topic": "home/balcony/temperature",
+                            "retain": true
+                        }
+                    ],
+                    "name": "Weather"
+                },
+                {
+                    "id": "5",
+                    "config_items": [],
+                    "state_items": [
+                        {
+                            "field": "pressure",
+                            "conversation_factor": 1,
+                            "mqtt_topic": "home/balcony/airpressure",
+                            "retain": true
+                        }
+                    ],
+                    "name": "Weather"
+                }
+            ]
+        },
+        "deleted": [],
+        "scene_called": []
+    }
+}
