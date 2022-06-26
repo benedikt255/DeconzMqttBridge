@@ -3,9 +3,9 @@ extern crate paho_mqtt as mqtt;
 pub mod config;
 
 use url::Url;
-use tungstenite::{connect};
-use serde_json::{Value};
-use std::{fs::File, default};
+use tungstenite::connect;
+use serde_json::Value;
+use std::fs::File;
 use std::io::BufReader;
 use std::process;
 use std::time::Duration;
@@ -24,7 +24,7 @@ fn main() {
     let config: ConfigData = serde_json::from_reader(reader).expect("error while reading or parsing");
   
     //connect to websocket
-    let (mut socket, response) = connect(
+    let (mut socket, _response) = connect(
             Url::parse("ws://172.25.130.227:8443").unwrap()
         ).expect("Can't connect");
 
@@ -68,6 +68,7 @@ fn main() {
     }
 }
 
+// handle changed events
 fn changed_event_data_handler(event_data: &Value, event_config: &EventChangedData, mqtt_client: &mqtt::Client) {
     match event_data["r"].as_str().unwrap_or_default() {
         "groups"=>println!("groups changed events are not supported yet"),
@@ -78,12 +79,15 @@ fn changed_event_data_handler(event_data: &Value, event_config: &EventChangedDat
     }
 }
 
+// handle sensor changed events
 fn changed_event_sensors_data_handler(event_data: &Value, event_config: &Vec<EventChangedSensorsData>, mqtt_client: &mqtt::Client) {
     for elem in event_config {
         if elem.id == event_data["id"].as_str().unwrap_or_default() {
             for state_elem in &elem.state_items {
+                //event may not contain state info
                 if !event_data["state"].is_null() {
                     let value: f64 = state_elem.conversation_factor * event_data["state"][state_elem.field.as_str()].as_f64().unwrap_or_default();
+                    // we do not want to retain all messages but some
                     let msg = 
                         if state_elem.retain {mqtt::Message::new_retained(state_elem.mqtt_topic.as_str(), value.to_string(), QOS)} 
                         else {mqtt::Message::new(state_elem.mqtt_topic.as_str(), value.to_string(), QOS)};
