@@ -25,7 +25,7 @@ fn main() {
   
     //connect to websocket
     let (mut socket, _response) = connect(
-            Url::parse("ws://172.25.130.227:8443").unwrap()
+            Url::parse(&config.deconz_url).unwrap()
         ).expect("Can't connect");
 
     // Define the set of options for the create.

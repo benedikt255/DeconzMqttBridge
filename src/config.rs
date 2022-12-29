@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
  pub struct ConfigData {
     pub broker_url: String,
     pub broker_conn_timeout: u64,
+    pub deconz_url: String,
     pub ws_event: WsEventData,
  }
 
