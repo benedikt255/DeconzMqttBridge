@@ -10,7 +10,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  build_amd64:
 
     runs-on: ubuntu-latest
 
@@ -20,3 +20,15 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+      
+      
+  build_aarch64:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cross build --verbose --target aarch64-unknown-linux-gnu:latest
+    - name: Run tests
+      run: cross test --verbose --target aarch64-unknown-linux-gnu:latest
