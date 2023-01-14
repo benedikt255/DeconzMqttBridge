@@ -17,12 +17,17 @@ const DFLT_CLIENT:&str = "Deconz_Mqtt_Bridge";
 const QOS:i32 = 0;
 
 fn main() {
-    //get config
+    //get conf
+    println!("DeconzMqttBridge started\n\t");
     let file = File::open("config/DeconzMqttBridge.json").expect("file not found");
     let reader = BufReader::new(file);
     let config: ConfigData = serde_json::from_reader(reader).expect("error while reading or parsing");
+
+    println!("config read, wait configured time\n\t");
   
     thread::sleep(Duration::from_secs(config.wait_time));
+
+    println!("wait finished, connect\n\t");
 
     //connect to websocket
     let (mut socket, _response) = connect(
@@ -53,6 +58,8 @@ fn main() {
         println!("Unable to connect:\n\t{:?}", e);
         process::exit(1);
     }
+
+    println!("connected, enter loop\n\t");
 
     //infinite loop
     loop {
