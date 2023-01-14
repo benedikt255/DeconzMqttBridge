@@ -9,6 +9,7 @@ use std::fs::File;
 use std::io::BufReader;
 use std::process;
 use std::time::Duration;
+use std::thread;
 
 use crate::config::{ConfigData,EventChangedData, EventChangedSensorsData};
 
@@ -21,6 +22,8 @@ fn main() {
     let reader = BufReader::new(file);
     let config: ConfigData = serde_json::from_reader(reader).expect("error while reading or parsing");
   
+    thread::sleep(Duration::from_secs(config.wait_time));
+
     //connect to websocket
     let (mut socket, _response) = connect(
             Url::parse(&config.deconz_url).unwrap()

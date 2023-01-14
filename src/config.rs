@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
     pub broker_url: String,
     pub broker_conn_timeout: u64,
     pub deconz_url: String,
+    pub wait_time: u64,
     pub ws_event: WsEventData,
  }
 
