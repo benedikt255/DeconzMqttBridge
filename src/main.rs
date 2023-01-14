@@ -16,10 +16,8 @@ const DFLT_CLIENT:&str = "Deconz_Mqtt_Bridge";
 const QOS:i32 = 0;
 
 fn main() {
-    println!("Hello, websocket world!");
-
     //get config
-    let file = File::open("./Config_DeconzMqttBridge.json").expect("file not found");
+    let file = File::open("config/DeconzMqttBridge.json").expect("file not found");
     let reader = BufReader::new(file);
     let config: ConfigData = serde_json::from_reader(reader).expect("error while reading or parsing");
   
