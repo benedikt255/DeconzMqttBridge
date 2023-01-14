@@ -28,6 +28,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: install cross
+      run: cargo install cross --git https://github.com/cross-rs/cross
     - name: Build
       run: cross build --verbose --target aarch64-unknown-linux-gnu:latest
     - name: Run tests
