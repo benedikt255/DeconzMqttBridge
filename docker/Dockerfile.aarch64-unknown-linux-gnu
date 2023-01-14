@@ -1,4 +1,4 @@
-FROM localhost/cross-base-arm64:latest
+FROM ghcr.io/cross-rs/aarch64-unknown-linux-gnu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
