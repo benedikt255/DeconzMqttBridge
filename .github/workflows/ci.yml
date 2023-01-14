@@ -31,6 +31,17 @@ jobs:
     - name: install cross
       run: cargo install cross --git https://github.com/cross-rs/cross
     - name: Build
-      run: cross build --verbose --target aarch64-unknown-linux-gnu:latest
+      run: cross build --verbose --target aarch64-unknown-linux-gnu
     - name: Run tests
-      run: cross test --verbose --target aarch64-unknown-linux-gnu:latest
+      run: cross test --verbose --target aarch64-unknown-linux-gnu
+      
+  build_aarch64_2:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --verbose --target aarch64-unknown-linux-gnu
+    - name: Run tests
+      run: cargo test --verbose --target aarch64-unknown-linux-gnu
