@@ -119,10 +119,10 @@ jobs:
         
         
       - name: Generate XML SBOM
-        run: cargo cyclonedx
+        run: cargo cyclonedx --all
 
       - name: Generate JSON SBOM
-        run: cargo cyclonedx --format json
+        run: cargo cyclonedx --format json --all
                   
       - name: publish artifacts
         uses: softprops/action-gh-release@v1
