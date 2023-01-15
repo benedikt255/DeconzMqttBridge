@@ -40,7 +40,7 @@ fn main() {
     let (mut client, mut connection) = Client::new(mqttoptions, 10);
 
     task::spawn(async move { 
-        for (i, notification) in connection.iter().enumerate() {
+        for (_i, notification) in connection.iter().enumerate() {
             println!("Notification = {:?}", notification);
         }
     });
