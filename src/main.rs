@@ -41,6 +41,7 @@ fn main() {
 
     thread::spawn(move || for (_i, notification) in connection.iter().enumerate() {
         println!("Notification = {:?}", notification);
+        thread::sleep(Duration::from_millis(10));
     });
 
     println!("connected, enter loop\n\t");
