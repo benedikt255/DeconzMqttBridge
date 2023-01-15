@@ -39,10 +39,8 @@ fn main() {
 
     let (mut client, mut connection) = Client::new(mqttoptions, 10);
 
-    task::spawn(async move { 
-        for (_i, notification) in connection.iter().enumerate() {
-            println!("Notification = {:?}", notification);
-        }
+    thread::spawn(move || for (_i, notification) in connection.iter().enumerate() {
+        println!("Notification = {:?}", notification);
     });
 
     println!("connected, enter loop\n\t");
