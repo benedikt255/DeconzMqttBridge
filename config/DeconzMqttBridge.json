@@ -1,5 +1,6 @@
 {
-    "broker_url": "tcp://192.168.1.183:1883",
+    "broker_url": "192.168.1.183",
+    "broker_port": 1883,
     "broker_conn_timeout": 600,
     "deconz_url": "ws://192.168.1.183:443",
     "wait_time": 60,
