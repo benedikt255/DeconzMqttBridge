@@ -66,7 +66,7 @@ fn changed_event_data_handler(event_data: &Value, event_config: &EventChangedDat
         "groups"=>println!("groups changed events are not supported yet"),
         "lights"=>println!("lights changed events are not supported yet"),
         "scenes"=>println!("scenes changed events are not supported yet"),
-        "sensors"=>changed_event_sensors_data_handler(&event_data, &event_config.sensors, mqtt_client),
+        "sensors"=>changed_event_sensors_data_handler(event_data, &event_config.sensors, mqtt_client),
         _=>println!("unexpected e value {}", event_data["e"])
     }
 }
