@@ -6,7 +6,6 @@ use std::fs::File;
 use std::io::BufReader;
 use std::time::Duration;
 use std::thread;
-use tokio::{task, time};
 use tungstenite::connect;
 use url::Url;
 
